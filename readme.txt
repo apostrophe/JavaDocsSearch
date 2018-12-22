@@ -1,12 +1,4 @@
 
-21/12/2018 13:25:57 create a search API and tie it to a firefox search
-
-2018-12-21 13:26:54 configure  database
-
-2018-12-21 13:52:26 connect to database
-
-2018-12-21 14:46:04 rest api now working
-
 example API call:
 
 	$ curl localhost:8080/search?term=ArrayDeque && echo
@@ -24,9 +16,43 @@ connecting to postgresql:
 /home/bschilke/Documents/development/platforms/firefox extensions
 
 
-try using port 80
-	there are restrictions to using port 80
-		https://stackoverflow.com/questions/33703965/spring-boot-running-app-on-port-80
-			answer: https://stackoverflow.com/a/33704078/724199
-				sudo iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 8080
-				sudo iptables -t nat -I OUTPUT -p tcp -d 127.0.0.1 --dport 80 -j REDIRECT --to-ports 8080
+       
+To configure spring project to use https:
+
+    Create keystore:
+    
+        $ keytool -genkey -alias javadocsprojectcert -keyalg RSA -keystore ~/.javadocsprojectcertkeystore
+        
+    Above creates a keystore called .javadocsprojectcertkeystore and within that keystore the alias 
+    javadocsprojectcert.
+    I copied .javadocsprojectcertkeystore to the resources folder and then change the name to 
+    javadocsprojectcertkeystore (removing the leading dot so it could be viewed in the eclipse project).
+    (Don't forget to refresh the folder so that it's visible to the project.) 
+    I use the same password for each (prompted for within interactive mode).
+   
+				
+https://localhost:8443/search?term=test
+
+Temporarily load firefox extension:
+
+	about:debugging 
+	load mainfest.json
+	
+
+
+try using ports 80/443 -- UPDATE: NOT NEEDED
+	there are restrictions to using ports unto 1000(?), so you must continue to higher ports
+	(eg 8080 and 8443), and then map the higher ports to map 80 and 443 using NAT
+		sudo iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 8080
+		sudo iptables -t nat -I OUTPUT -p tcp -d 127.0.0.1 --dport 80 -j REDIRECT --to-ports 8080
+	
+        sudo iptables -t nat -A PREROUTING -p tcp --dport 443 -j REDIRECT --to-port 8443
+        sudo iptables -t nat -I OUTPUT -p tcp -d 127.0.0.1 --dport 443 -j REDIRECT --to-ports 8443
+
+		# to list tables
+		sudo iptables -L -n -v -t nat | less
+
+	source:
+	   https://stackoverflow.com/questions/33703965/spring-boot-running-app-on-port-80
+       https://stackoverflow.com/a/33704078/724199
+       

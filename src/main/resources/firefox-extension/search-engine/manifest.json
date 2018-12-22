@@ -1,0 +1,24 @@
+{
+
+  "manifest_version": 2,
+  "name": "Java Docs search engine",
+  "description": "Adds a search engine that searches Java Documentation",
+  "version": "1.0",
+  "applications": {
+    "gecko": {
+      "strict_min_version": "55"
+    }
+  },
+  "chrome_settings_overrides": {
+    "search_provider": {
+      "name": "JavaDocs",
+      "search_url": "https://localhost:8443/search/?term={searchTerms}",
+      "suggest_url": "https://localhost:8443/search/?term={searchTerms}",
+      "keyword": "disc",
+      "favicon_url": "https://docs.oracle.com/favicon.ico",
+      "is_default": false
+    }
+  }
+
+}
+
