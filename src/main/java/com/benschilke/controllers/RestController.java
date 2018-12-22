@@ -16,9 +16,10 @@ public class RestController {
 	@Autowired
 	JavaDocsRepository javaDocsRepository;
 	
+	// localhost/search?term=Array
 	@RequestMapping("/search")
 	public List<JavaDoc> search(@RequestParam("term") String term) {
-		List<JavaDoc> javaDocs = javaDocsRepository.findByTermContaining(term);
+		List<JavaDoc> javaDocs = javaDocsRepository.findByTermContainingIgnoreCase(term);
 		return javaDocs;
 	}
 	

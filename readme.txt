@@ -24,4 +24,9 @@ connecting to postgresql:
 /home/bschilke/Documents/development/platforms/firefox extensions
 
 
-
+try using port 80
+	there are restrictions to using port 80
+		https://stackoverflow.com/questions/33703965/spring-boot-running-app-on-port-80
+			answer: https://stackoverflow.com/a/33704078/724199
+				sudo iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 8080
+				sudo iptables -t nat -I OUTPUT -p tcp -d 127.0.0.1 --dport 80 -j REDIRECT --to-ports 8080
