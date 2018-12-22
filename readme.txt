@@ -12,6 +12,9 @@ example API call:
 	$ curl localhost:8080/search?term=ArrayDeque && echo
 	[{"id":4446,"term":"ArrayDeque","path":"java/util/ArrayDeque.html"}]
 	$ 
+	
+	
+	$ curl localhost:8080/search?term=Array | json_reformat | less
 
 
 connecting to postgresql:

@@ -9,5 +9,7 @@ import java.util.List;
 public interface JavaDocsRepository extends CrudRepository<JavaDoc, Long>{
 	
 	List<JavaDoc> findByTerm(String term);
+	
+	List<JavaDoc> findByTermContaining(String term);
 
 }

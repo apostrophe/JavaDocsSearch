@@ -18,7 +18,7 @@ public class RestController {
 	
 	@RequestMapping("/search")
 	public List<JavaDoc> search(@RequestParam("term") String term) {
-		List<JavaDoc> javaDocs = javaDocsRepository.findByTerm(term);
+		List<JavaDoc> javaDocs = javaDocsRepository.findByTermContaining(term);
 		return javaDocs;
 	}
 	
