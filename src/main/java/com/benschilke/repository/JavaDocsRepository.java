@@ -14,4 +14,5 @@ public interface JavaDocsRepository extends CrudRepository<JavaDoc, Long>{
 	
 	List<JavaDoc> findByTermContainingIgnoreCase(String term);
 
+	List<JavaDoc> findTop10ByTermContainingIgnoreCase(String term);
 }

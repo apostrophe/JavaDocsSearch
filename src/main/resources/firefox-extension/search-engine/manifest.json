@@ -13,9 +13,9 @@
     "search_provider": {
       "name": "JavaDocs",
       "search_url": "https://localhost:8443/search/?term={searchTerms}",
-      "suggest_url": "https://localhost:8443/search/?term={searchTerms}",
       "keyword": "disc",
       "favicon_url": "https://docs.oracle.com/favicon.ico",
+      "suggest_url": "https://localhost:8443/suggest/?term={searchTerms}",
       "is_default": false
     }
   }

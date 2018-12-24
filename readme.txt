@@ -1,22 +1,19 @@
 
-example API call:
+API call:
+	https://localhost:8443/search?term=list
 
-	$ curl localhost:8080/search?term=ArrayDeque && echo
+API call from command line:
+
+	$ curl localhost:8443/search?term=ArrayDeque && echo
 	[{"id":4446,"term":"ArrayDeque","path":"java/util/ArrayDeque.html"}]
-	$ 
 	
-	
-	$ curl localhost:8080/search?term=Array | json_reformat | less
+	$ curl localhost:8443/search?term=Array | json_reformat | less
 
 
 connecting to postgresql:
 
 	$ psql -d javadocs -U app_user -W
-
-/home/bschilke/Documents/development/platforms/firefox extensions
-
-
-       
+  
 To configure spring project to use https:
 
     Create keystore:
@@ -31,8 +28,6 @@ To configure spring project to use https:
     I use the same password for each (prompted for within interactive mode).
    
 				
-https://localhost:8443/search?term=test
-
 Temporarily load firefox extension:
 
 	about:debugging 
@@ -41,8 +36,9 @@ Temporarily load firefox extension:
 
 
 try using ports 80/443 -- UPDATE: NOT NEEDED
-	there are restrictions to using ports unto 1000(?), so you must continue to higher ports
-	(eg 8080 and 8443), and then map the higher ports to map 80 and 443 using NAT
+	there are restrictions to using ports under 1000(?), so you must use the conventional higher ports
+	(eg 8080 and 8443), and then map them 80 and 443 using iptables' NAT feature
+	
 		sudo iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 8080
 		sudo iptables -t nat -I OUTPUT -p tcp -d 127.0.0.1 --dport 80 -j REDIRECT --to-ports 8080
 	
